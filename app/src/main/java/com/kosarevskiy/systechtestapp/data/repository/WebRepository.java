@@ -26,26 +26,6 @@ public class WebRepository {
 
     public Observable<ExcangeRatesEntity> getRates(String date){
         //FIXME DATAFORMAT
-        return mNBRestService.getData(date).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());} /*.map((ExcangeRatesEntity excangeRatesEntity) -> {
+        return mNBRestService.getData(date).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());}
 
-           List<Currency> currencies = new ArrayList<>();
-           List<EntityCurrency> entities  = excangeRatesEntity.getEntityCurrencies();
-           for (EntityCurrency e : entities){  Log.e("TAAG", "webrepo");
-               String name = e.getName();
-               String charCode = e.getCharCode();
-               double rate;
-               int scale;
-               try {
-                   rate = Double.parseDouble(e.getRate());
-                   scale = Integer.parseInt(e.getScale());
-               }catch (NumberFormatException ex){
-                   continue;
-               }
-               if((!name.isEmpty()) && (!charCode.isEmpty())){
-                   currencies.add(new Currency(scale, name, charCode, rate));
-               }
-           }
-           return currencies;
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());            //fixme ынести в даггер
-    }*/
 }

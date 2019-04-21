@@ -12,6 +12,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface NbApi {
-    @GET("/Services/XmlExRates")
-    Observable<ExcangeRatesEntity> getData() ;//fixme (@Query("ondate") String date);
+    @GET("/Services/XmlExRates.aspx")
+    Observable<ExcangeRatesEntity> getData(@Query("ondate") String date);
 }

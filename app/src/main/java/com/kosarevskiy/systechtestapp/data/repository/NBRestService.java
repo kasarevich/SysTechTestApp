@@ -24,6 +24,6 @@ public class NBRestService {
     }
 
     public Observable<ExcangeRatesEntity> getData (String date){
-        return mNbApi.getData();
+        return mNbApi.getData(date);
     }
 }
