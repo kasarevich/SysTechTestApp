@@ -1,15 +1,16 @@
 package com.kosarevskiy.systechtestapp.app;
 
-import com.kosarevskiy.systechtestapp.HomeActivity;
-import com.kosarevskiy.systechtestapp.di.RepositoryModule;
+import com.kosarevskiy.systechtestapp.data.database.DBHelper;
+import com.kosarevskiy.systechtestapp.di.DomainModule;
+import com.kosarevskiy.systechtestapp.mvp.presenter.RateListPresenter;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
 
 @Singleton
-@Component (modules = {RepositoryModule.class})
+@Component (modules = {DomainModule.class, DBHelper.class})
 public interface AppComponent {
 
-    void inject(HomeActivity activity);
+    void inject(RateListPresenter rateListPresenter);
 }

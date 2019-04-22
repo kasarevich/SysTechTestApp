@@ -1,42 +1,22 @@
 package com.kosarevskiy.systechtestapp;
 
-import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
-import com.kosarevskiy.systechtestapp.app.App;
-import com.kosarevskiy.systechtestapp.data.entity.EntityCurrency;
-import com.kosarevskiy.systechtestapp.data.entity.ExcangeRatesEntity;
-import com.kosarevskiy.systechtestapp.data.repository.WebRepository;
-import com.kosarevskiy.systechtestapp.mvp.model.Currency;
+import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.kosarevskiy.systechtestapp.mvp.presenter.HomePresenter;
+import com.kosarevskiy.systechtestapp.mvp.view.HomeView;
 
-import org.reactivestreams.Subscription;
-
-import java.util.List;
-import java.util.Observable;
-
-import javax.inject.Inject;
-
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends MvpAppCompatActivity implements HomeView {
 
 
-    @Inject
-    WebRepository mWebRepository;
 
+    @InjectPresenter
+    HomePresenter mHomePresenter;
 
     private Toolbar mToolbar;
-    private ImageButton mImageButton;
-    private TextView mTextView;
 
 
     @Override
@@ -44,25 +24,39 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mToolbar = findViewById(R.id.toolbar); //fixme butterknife
-
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      //  App.getAppComponent().inject(this);// fixme to base
+    }
 
-        mTextView = mToolbar.findViewById(R.id.title_toolbar);
-        mImageButton = mToolbar.findViewById(R.id.imageButtonBack);
-
-        mTextView.setText("Курсы валют");
-        mImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mImageButton.setImageResource(R.drawable.ic_build_black_48dp);
-            }
-        });
-
-        App.getAppComponent().inject(this);// fixme to base
-
+    public void navigateToFragment (Fragment fragment){
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
 
+
+/*
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.tab_menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                finish();
+                break;
+            }
+            case R.id.action_setting:{
+                item.setIcon(R.drawable.baseline_done_black_24dp);
+                break;
+            }
+        }
+        return true;
+    }*/
 }
 /*
 

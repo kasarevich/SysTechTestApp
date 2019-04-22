@@ -3,4 +3,6 @@
     <string name="cant_get_rates_message">Не удалось получить курсы валют</string>
 
     <string name="fa_map_marker">\uf104</string>
+    <string name="back_menu_title">back</string>
+    <string name="setting_menu_title">setting</string>
 </resources>
