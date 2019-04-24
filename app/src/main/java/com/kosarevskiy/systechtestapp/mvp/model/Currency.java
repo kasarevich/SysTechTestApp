@@ -6,16 +6,22 @@ public class Currency {
     private int scale;
     private String name;
     private String charCode;
-    private double rate;
+    private double firstDayRate;
+    private double secondDayRate;
+    private boolean isEnable;
+    private int order;
 
     public Currency() {
     }
 
-    public Currency(int scale, String name, String charCode, double rate) {
+    public Currency(int scale, String name, String charCode, double firstDayRate, double secondDayRate, boolean isEnable, int order) {
         this.scale = scale;
         this.name = name;
         this.charCode = charCode;
-        this.rate = rate;
+        this.firstDayRate = firstDayRate;
+        this.secondDayRate = secondDayRate;
+        this.isEnable = isEnable;
+        this.order = order;
     }
 
     public int getScale() {
@@ -42,21 +48,35 @@ public class Currency {
         this.charCode = charCode;
     }
 
-    public double getRate() {
-        return rate;
+    public double getFirstDayRate() {
+        return firstDayRate;
     }
 
-    public void setRate(double rate) {
-        this.rate = rate;
+    public void setFirstDayRate(double firstDayRate) {
+        this.firstDayRate = firstDayRate;
     }
 
-    @Override
-    public String toString() {
-        return "Currency{" +
-                "scale=" + scale +
-                ", name='" + name + '\'' +
-                ", charCode='" + charCode + '\'' +
-                ", rate=" + rate +
-                '}';
+    public double getSecondDayRate() {
+        return secondDayRate;
+    }
+
+    public void setSecondDayRate(double secondDayRate) {
+        this.secondDayRate = secondDayRate;
+    }
+
+    public boolean isEnable() {
+        return isEnable;
+    }
+
+    public void setEnable(boolean enable) {
+        isEnable = enable;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 }

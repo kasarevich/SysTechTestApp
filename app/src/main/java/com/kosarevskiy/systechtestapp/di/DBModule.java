@@ -1,8 +1,10 @@
 package com.kosarevskiy.systechtestapp.di;
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 
-import com.kosarevskiy.systechtestapp.data.database.DBHelper;
+import com.kosarevskiy.systechtestapp.data.database.CurrencyDao;
+import com.kosarevskiy.systechtestapp.data.database.RateDB;
 
 import javax.inject.Singleton;
 
@@ -13,18 +15,16 @@ import dagger.Provides;
 public class DBModule {
     @Provides
     @Singleton
-    public DBHelper getDBHelper(Context context, String dbName, Integer dbVersion){
-        return new DBHelper(context, dbName, dbVersion);
+    public RateDB getRateDB(Context context){
+        return Room.databaseBuilder(context,
+                RateDB.class, "RatesDatabase")
+                .build();
     }
 
     @Provides
-    String getDatabaseName() {
-        return "rates.db";
-    }
-
-    @Provides
-    Integer getDatabaseVersion() {
-        return 1;
+    @Singleton
+    public CurrencyDao getCurrencyDao(RateDB rateDB){
+        return rateDB.mCurrencyDao();
     }
 
 }
